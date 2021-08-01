@@ -137,6 +137,16 @@ app.post('/api/v1/ultrenostimesheets/admin/uploadtasklist', upload.single('file-
 });
 
 //Router 
+app.use('/', (req, res) => {
+    res.status(200).json({
+                title: 'Welcome',
+                status: 'success',
+                data: {
+                    welcome: 'Welcome to the mobile construction timesheet API from the portfolio of Tisha Murvihill.',
+                    message: 'Please visit https://constructiontimesheets.take2tech.ca to run the app.'
+                }
+            });
+})
 app.use('/api/v1/ultrenostimesheets', timesheetRouter);
 app.use('/api/v1/ultrenostimesheets/supportlists', supportListRouter);
 app.use('/api/v1/ultrenostimesheets/users', userRouter);
@@ -250,4 +260,4 @@ mongoose
     .then(() => console.log('DB connection successful'));
 
 const port = process.env.PORT || 5050;
-app.listen(port, (req, res) => console.log("server running"));
+app.listen(port, (req, res) => console.log(`Server running on port: ${port}`));
