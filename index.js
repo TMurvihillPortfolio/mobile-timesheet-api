@@ -103,6 +103,7 @@ app.post('/api/v1/ultrenostimesheets/admin/uploadjoblist', upload.single('file-t
     // res.redirect('http://localhost:3006/?success=true');
     res.redirect('https://ultrenostimesheets.take2tech.ca/?success=true');
 });
+
 // Be sure the file name matches the name attribute in your html
 app.post('/api/v1/ultrenostimesheets/admin/uploadtasklist', upload.single('file-to-upload'), async (req, res) => {
     upload.single('file-to-upload')
@@ -137,16 +138,6 @@ app.post('/api/v1/ultrenostimesheets/admin/uploadtasklist', upload.single('file-
 });
 
 //Router 
-app.use('/', (req, res) => {
-    res.status(200).json({
-                title: 'Welcome',
-                status: 'success',
-                data: {
-                    welcome: 'Welcome to the mobile construction timesheet API from the portfolio of Tisha Murvihill.',
-                    message: 'Please visit https://constructiontimesheets.take2tech.ca to run the app.'
-                }
-            });
-})
 app.use('/api/v1/ultrenostimesheets', timesheetRouter);
 app.use('/api/v1/ultrenostimesheets/supportlists', supportListRouter);
 app.use('/api/v1/ultrenostimesheets/users', userRouter);
@@ -188,7 +179,18 @@ app.use('/api/v1/ultrenostimesheets/admin', adminRouter);
 // const bodyParser = require('body-parser');
 // app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.json());
-
+// Welcome message for api
+app.use('/', (req, res) => {
+    res.status(200).json({
+                title: 'Construction Timesheets API',
+                status: 'success',
+                author: 'Tisha Murvihill',
+                data: {
+                    welcome: 'Welcome to the mobile construction timesheet API from the portfolio of Tisha Murvihill, web developer.',
+                    message: 'Please visit https://constructiontimesheets.take2tech.ca to run the app.'
+                }
+            });
+})
 // Catch invalid routes
 app.all('*', (req,res,next) => {
     next(console.log(`Web address not found. Please see take2tech-api docs for valid addresses.`, 404));
