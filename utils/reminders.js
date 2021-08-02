@@ -1,7 +1,10 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
-const DB = "mongodb+srv://tmurvv:caEhq0cvjVtSjatA@cluster0-uf5qd.mongodb.net/ultrenos?retryWrites=true&w=majority";
+const DB = process.env.DATABASE.replace(
+    '<PASSWORD>',
+    process.env.DATABASE_PASSWORD
+);
 const {timesheetReminder} = require('../assets/emailTemplates/timesheetReminder');
 const {Timesheets} = require('../schemas/TimesheetsSchema');
 const {Users} = require('../schemas/UserSchema');
@@ -26,14 +29,12 @@ const {Users} = require('../schemas/UserSchema');
     // get users
     try {
         userList = await Users.find();
-        console.log('userList:', userList.length)
     } catch (e) {
         console.log('error fetching users', e.message);
     }
     // get timesheets
     try {
         timesheetList = await Timesheets.find();
-        console.log('timesheetList:', timesheetList.length)
     } catch (e) {
         console.log('error fetching users', e.message);
     }

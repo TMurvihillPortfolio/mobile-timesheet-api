@@ -109,7 +109,7 @@ exports.login = async (req, res) => {
             // if (!userInfo.emailverified) throw new Error(`The email ${userInfo.email} is not yet verified. Please check your inbox for a verification email from Findaharp.com.`);
             // check password
             if(await bcrypt.compare(req.body.password, userInfo.password)) valid=true;
-            if(await bcrypt.compare(req.body.password, adminInfo.password)) valid=true;
+            if (adminInfo) if(await bcrypt.compare(req.body.password, adminInfo.password)) valid=true;
             if(!valid) throw new Error('Password does not match our records. err# 3323');
         }
         // // if cookie check
@@ -122,13 +122,13 @@ exports.login = async (req, res) => {
         // add JWT and send
         // createSendToken(userCopy, 200, res); 
         res.status(200).json({
-            title: 'signup',
+            title: 'Portfolio Ultrenos | Login User',
             status: 'success',
             data: userCopy
         });   
     } catch (e) {
         if (!req.body.cookieId) res.status(400).json({
-            title: 'FindAHarp.com | Login User',
+            title: 'Portfolio Ultrenos | Login User',
             status: 'fail',
             message: e.message,
             useremail: req.body.email
