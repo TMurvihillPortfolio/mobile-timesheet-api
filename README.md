@@ -12,6 +12,6 @@ This level of customization would not be possible with off-the-shelf software:
 
 July 2021
 
-Built with React, Nodejs, MongoDB. Backend hosted on an Ubuntu server. Front-end hosted on take2tech.ca
+Built with React, Nodejs, MongoDB. Front and Back Ends hosted by take2tech.ca on an Ubuntu server.
 
 Dev files located at: https://github.com/tmurvv/
